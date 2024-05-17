@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard BaP Monitoring System</title>
+    <link rel="icon" href="desain alatt.png" type="img/png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Tambahkan Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Tambahkan gaya untuk notifikasi -->
+    <style>
+        #notification {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+        }
+
+        #new-graph {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="RSSI.html">
+                    <i class="fas fa-signal"></i>
+                    <span>RSSI</span>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="logout.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <span>Primary</span>
+                <h2>Dashboard BaP Monitoring</h2>
+            </div>
+            <div class="user--info">
+                <div class="search--box">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Search" />
+                </div>
+                <img src="desain alatt.png" alt="">
+            </div>
+        </div>
+        <div>
+            <div class="card-container">
+                <div class="card-wrapper">
+                    <div class="date-card">
+                        <div class="card-header">
+                            <div class="title">Date</div>
+                            <div class="date-info">
+                                <span class="date" id="currentDate"></span>
+                            </div>
+                            <i class="fas fa-calendar-alt icon"></i>
+                        </div>
+                    </div>
+            
+                    <div class="time-card">
+                        <div class="card-header">
+                            <div class="title">Time</div>
+                            <div class="time-info">
+                                <span class="time" id="currentTime"></span>
+                            </div>
+                            <i class="far fa-clock icon"></i>
+                        </div>
+                    </div>
+                    <div class="time-card">
+                        <div class="card-header">
+                            <div class="title">Benzo[a]pyrene Concentration</div>
+                            <div class="time-info">
+                                <span class="value" id="concentration">663</span>
+                            </div>
+                            <i class="fas fa-flask icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="graph-container">
+            <h6 class="graph-title">Grafik Konsentrasi BaP Terhadap Waktu</h6>
+            <div class="graph-card">
+                <div id="new-graph" class="graph-header">
+                    <div class="graph-info">
+                        <span class="graph"></span>
+                    </div>
+                    <i class="fas fa-chart-line icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="download-container">
+                <h6 class="download-title">Download Data Monitoring</h6>
+                <div class="button-container">
+                    <button onclick="startMonitoring()" class="start-button">START Monitoring</button>
+                    <button onclick="stopMonitoring()" class="stop-button">STOP Monitoring</button>
+                </div>
+                <button onclick="handleDownloadClick()" class="download-button">Download All Data</button>
+                <div id="notification"></div>
+            </div>
+        </div>
+    <script>
+        // JavaScript code to dynamically set the current date and time in Jakarta's timezone
+        document.addEventListener("DOMContentLoaded", function () {
+            function updateDateTime() {
+                var currentDateElement = document.getElementById("currentDate");
+                var currentTimeElement = document.getElementById("currentTime");
+
+                if (currentDateElement && currentTimeElement) {
+                    var optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Jakarta' };
+                    var optionsTime = { hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'Asia/Jakarta' };
+
+                    var currentDate = new Date().toLocaleDateString('en-US', optionsDate);
+                    var currentTime = new Date().toLocaleTimeString('en-US', optionsTime);
+
+                    currentDateElement.textContent = currentDate;
+                    currentTimeElement.textContent = currentTime;
+                }
+            }
+
+            // Update date and time every second
+            setInterval(updateDateTime, 1000);
+
+            // Initial call to set date and time immediately
+            updateDateTime();
+        })
+        </script>
+
+        <!-- Tambahkan Firebase SDK dan script Plotly -->
+
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+        <script>
+            // Konfigurasi Website Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyDx7mrbc4leZbB9bIN2eW9kGCzw2ZAu0ac",
+                authDomain: "komunikasi-data-1f4ca.firebaseapp.com",
+                databaseURL: "https://komunikasi-data-1f4ca-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "komunikasi-data-1f4ca",
+                storageBucket: "komunikasi-data-1f4ca.appspot.com",
+                messagingSenderId: "1048856340184",
+                appId: "1:1048856340184:web:28cd4fe7482e8d38c2d9ad"
+            };
+
+            // Inisialisasi Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Mendapatkan referensi database Firebase
+            var database = firebase.database();
+
+            // Mendapatkan referensi dari data yang ingin diambil
+            var dataRef1 = database.ref('MQ4 Sensor/Value');
+
+            // Create an empty array to store data for the graph
+            var concentrationData = [];
+            var timeData = [];
+            var startTime;
+
+            // Create a Plotly graph
+            var graph = Plotly.newPlot('new-graph', [{
+                x: [],
+                y: [],
+                type: 'line',
+                mode: 'lines+markers',
+                line: { shape: 'spline'},
+                fill: 'tozeroy',
+                fillcolor: 'rgba(113, 99, 186, 0.5)',
+                name: 'Concentration'
+            }], {
+                title: 'Grafik Hubungan Konsentrasi BaP dan Waktu',
+                xaxis: {
+                    title: 'Waktu (s)',
+                    tickmode: 'linear',
+                    tickangle: -90,
+                    tickformat: '%H:%M:%S',
+                    showline: true,
+                    showgrid: false,
+                },
+                yaxis: {
+                    title: 'Konsentrasi BaP (PPB)',
+                    range: [0, 5],
+                    dtick: 1,
+                    showline: true,
+                    showgrid: true,
+                }
+            });
+
+                // Update the graph with real-time data
+                dataRef1.on('value', function (getdata1) {
+                    var mq4 = getdata1.val();
+
+                // Update the concentration value on the page
+                document.getElementById('concentration').innerHTML = mq4 + " PPM";
+
+                // Measure time
+                var currentTime = new Date();
+                if (!startTime) {
+                    startTime = currentTime;
+                }
+                var elapsedTime = (currentTime - startTime) / 1000; // Waktu dalam detik
+
+                // Format waktu dalam format jam:menit:detik
+                var jakartaTime = new Date(currentTime.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+                var formattedTime = jakartaTime.toLocaleTimeString('en-US', { timeZone: 'Asia/Jakarta' });
+
+                // Add the new data point to the arrays
+                timeData.push(formattedTime);
+                concentrationData.push(mq4);
+                
+                // Update the graph with the new data
+                Plotly.update('new-graph', {
+                    x: [timeData],
+                    y: [concentrationData]
+                }, {});
+            });
+
+            // Function to update the graph layout on window resize
+            window.onresize = function() {
+                Plotly.Plots.resize('new-graph');
+            };
+        </script>
+        <script>
+            // Declare variables to store real-time data
+            var realtimeTimeData = [];
+            var realtimeConcentrationData = [];
+            var isMonitoring = false;
+
+            // Function to start monitoring
+            function startMonitoring() {
+                isMonitoring = true;
+                showNotification("Monitoring started.");
+            }
+
+            // Function to stop monitoring
+            function stopMonitoring() {
+                isMonitoring = false;
+                showNotification("Monitoring stopped.");
+            }
+
+            // Function to show notification
+            function showNotification(message) {
+                var notificationElement = document.getElementById("notification");
+                if (notificationElement) {
+                    notificationElement.textContent = message;
+                }
+            }
+
+            // Function to download data as CSV
+            function downloadCSVData() {
+                // Create a CSV-formatted string
+                var csvContent = "Date,Time,Concentration\n";
+                for (var i = 0; i < realtimeTimeData.length; i++) {
+                    var formattedDate = new Date(realtimeTimeData[i]).toLocaleDateString('en-US', { timeZone: 'Asia/Jakarta' });
+                    var formattedTime = new Date(realtimeTimeData[i]).toLocaleTimeString('en-US', { timeZone: 'Asia/Jakarta' });
+                    var concentration = realtimeConcentrationData[i];
+                    
+                    csvContent += formattedDate + "," + formattedTime + "," + concentration + "\n";
+                }
+
+                // Create a Blob with the CSV data
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+
+                // Create a link element
+                var a = document.createElement('a');
+
+                // Set the download attribute and file name
+                a.download = 'monitoring_data.csv';
+
+                // Create a URL for the Blob and set it as the href attribute
+                a.href = window.URL.createObjectURL(blob);
+
+                // Append the link to the body
+                document.body.appendChild(a);
+
+                // Trigger a click on the link to start the download
+                a.click();
+
+                // Remove the link from the body
+                document.body.removeChild(a);
+
+            }
+
+            // Function to handle download button click
+            function handleDownloadClick() {
+                showNotification("Monitoring data downloaded.");
+                downloadCSVData();
+            }
+
+            // Update the real-time data arrays with actual data from Firebase
+            dataRef1.on('value', function (getdata1) {
+                var mq4 = getdata1.val();
+
+                // Update the real-time data arrays
+                var currentTime = new Date();
+                realtimeTimeData.push(currentTime);
+                realtimeConcentrationData.push(mq4);
+            });
+        </script>
+</body>
+</html>

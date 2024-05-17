@@ -1,0 +1,79 @@
+/* Import Google Font cdn link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* REGISTER */
+body {
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, rgba(113, 99, 186, 255));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#MainForm h2 {
+    font-size: 23px;
+}
+
+.toggle h1 {
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 1.5%;
+}
+
+.toggle h4 {
+    font-size: 18px;
+    text-align: center;
+    padding-bottom: 10%;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#notification {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px; /* Add margin to the top of the notification div */
+}
+
+.btn.btn-primary {
+    background-color: rgba(113, 99, 186, 255);
+}
+
+.login-text {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-text a {
+    color: rgba(113, 99, 186, 255);
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}

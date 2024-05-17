@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Logout BaP Monitoring System</title>
+    <link rel="icon" href="desain alatt.png" type="image/png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="RSSI.html">
+                    <i class="fas fa-signal"></i>
+                    <span>RSSI</span>
+                </a>
+            </li>
+            <li class="active-logout">
+                <a href="logout.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2>BaP Monitoring System Logout Page</h2>
+            </div>
+            <div class="user--info">
+                <div class="search--box">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Search" />
+                </div>
+                <img src="desain alatt.png" alt="">
+            </div>
+        </div>
+    <div>
+    <div class="profile-container-logout">
+        <h2>Are you sure want to logout from this page?</h2>
+        <div class="logoo"></div>
+        <div class="buttons-container">
+            <h3 id="yesButton">
+                <i class="fas fa-check-circle"></i>
+                <span>Yes</span>
+            </h3>
+            <h4 id="noButton">
+                <i class="fas fa-times-circle"></i>
+                <span>No</span>
+            </h4>
+        </div>
+    </div>
+</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Add event listener to the "Yes" button
+        document.getElementById('yesButton').addEventListener('click', function (){
+            // Display confirm modal before redirecting to Login Page
+            Swal.fire({
+                title: 'Are you sure want to logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Logout',
+                cancelButtonText: 'No, cancel',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to Login Page
+                    window.location.href="login.html"
+                }
+            })
+        });
+        
+        // Add event listener to the "No" button
+        document.getElementById('noButton').addEventListener('click', function (){
+            // Display logout canceled notification
+            Swal.fire({
+                icon: 'error',
+                title: 'Logout Canceled',
+                showConfirmButton: false,
+                timer: 2000 // Notifikasi akan muncul selama 2 detik
+            });
+        })
+    </script>
+</html>

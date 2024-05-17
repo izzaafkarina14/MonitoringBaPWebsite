@@ -1,0 +1,501 @@
+/* Import Google Font cdn link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    display: flex;
+}
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 130px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background: rgba(113, 99, 186, 255);
+}
+.sidebar:hover {
+    width: 260px;
+    flex: 0 0 260px;
+    transition: all 0.5s linear;
+}
+.logo {
+    height: 80px;
+    padding: 16px;
+}
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+.menu li {
+    padding: 1rem;
+    margin: px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+.menu li:hover, 
+.active {
+    background: #e0e0e058;
+}
+.menu a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.menu a span {
+    overflow: hidden;
+}
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.active-logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.menu li:hover,
+.active-logout {
+    background: #e0e0e058;
+}
+
+/* **** main body section **** */
+.main-content,
+.profile-container {
+    position: relative;
+    background: #ebe9e9;
+    width: 100%;
+    padding: 1rem;
+}
+
+.profile-container h2 {
+    font-size: 25px;
+    padding-bottom: 10px;
+    color: rgba(113, 99, 186, 255);
+    text-align: center;
+}
+
+.profile-container p {
+    text-indent: 2em;
+}
+
+.header--wrapper img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.header--wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+.header--title {
+    color: rgba(113, 99, 186, 255);
+}
+.user--info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search--box {
+    background: rgb(237, 237, 237);
+    border-radius: 15px;
+    color: rgba(113, 99, 186, 255);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+}
+.search--box input {
+    background: transparent;
+    padding: 10px;
+}
+.search--box i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+.search--box i:hover {
+    transform: scale(1.2);
+}
+
+/* ***** card container ****** */
+.card-container,
+.profile-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+/* profile container */
+.profile-container-logout{
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-container-logout h2 {
+    color: rgba(113, 99, 186, 255);
+    text-align: center;
+}
+
+.profile-container-logout h3,
+.profile-container-logout h4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Change to align items to the left */
+    justify-content: space-between;
+    font-size: 20px;
+    color: rgba(113, 99, 186, 255);
+    width: 100%;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.logoo {
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.fas.fa-check-circle {
+    color: greenyellow;
+    font-size: 75px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    transform: translateY(-5px);
+    text-align: center;
+    cursor: pointer;
+}
+
+.fas.fa-times-circle {
+    color: red;
+    font-size: 75px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    transform: translateY(-5px);
+    text-align: center;
+    cursor: pointer;
+}
+
+.design-container,
+.system-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: auto;
+    overflow: auto;
+    margin-bottom: 1rem;
+}
+
+.design-title,
+.system-title {
+    font-size: 25px;
+    padding-bottom: 10px;
+    color: rgba(113, 99, 186, 255);
+}
+
+.image-row,
+.system-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.image-column {
+    flex: 0 1 calc(33.33% - 1rem);
+    max-width: calc(33.33% - 1rem);
+}
+
+.system-column {
+    flex: 0 1 calc(25% - 1rem);
+    max-width: calc(25% - 1rem);
+}
+
+.image-column img,
+.system-column img {
+    width: 100%;
+    height: 80%;
+    margin: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.design-container .desc,
+.system-container .desc {
+    padding: 15px;
+    text-align: center;
+
+}
+
+/* ***** card wrapper ****** */
+.card-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* ***** main titles ****** */
+.card-titles {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+}
+
+.main--title {
+    color: rgba(113, 99, 186, 255);
+    padding-bottom: 10px;
+    font-size: 15px;
+    flex: 1;
+}
+
+.main---title, .main----title {
+    color: rgba(113, 99, 186, 255);
+    padding-bottom: 10px;
+    font-size: 15px;
+    flex: 1;
+    text-align: center;
+}
+
+/* ***** date card ****** */
+.date-card,
+.time-card {
+    background: rgb(229, 223, 223);
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    flex: 1;
+    margin-right: 1rem;
+}
+
+/* ***** hover effect ****** */
+.date-card:hover,
+.time-card:hover {
+    transform: translateY(-5px);
+}
+
+/* ***** card header ****** */
+.card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Change to align items to the left */
+    justify-content: space-between;
+}
+
+/* ***** date and time info ****** */
+.date-info,
+.time-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* ***** text style ****** */
+.title {
+    font-size: 12px;
+    font-weight: 200;
+}
+
+/* ***** date and time text ****** */
+.date,
+.time,
+.value {
+    font-size: 20px;
+    align-self: flex-start;
+}
+
+/* ***** icon style ****** */
+.icon {
+    color: #fff;
+    padding: 1rem;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1rem;
+    background: #00ffff;
+    position: absolute;
+    top: 9px;
+    right: 10px;
+}
+
+/* BUAT GRAFIK */
+.graph-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.graph-card {
+    background: rgb(229, 223, 223);
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+}
+.graph-card:hover {
+    transform: translateY(-5px);
+}
+.graph-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.graph-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.graph-title {
+    font-size: 20px;
+    padding-bottom: 10px;
+    color: rgba(113, 99, 186, 255);
+}
+.graph-icon {
+    color: #fff;
+    padding: 1rem;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: #00ffff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Menyesuaikan lebar grafik pada layar dengan lebar maksimal 768px */
+@media only screen and (max-width: 768px) {
+    .graph-card {
+        width: 100%; /* Atur lebar grafik menjadi 100% pada layar dengan lebar maksimal 768px */
+    }
+}
+
+/* Download File */
+.download-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: column;
+}
+.download-title {
+    font-size: 20px;
+    padding-bottom: 10px;
+    color: rgba(113, 99, 186, 255);
+    font-weight: bold;
+}
+.button-container {
+    text-align: center;
+}
+.start-button {
+    color: #F9F6EE;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    background-color: blue;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 5px; /* Mengatur margin auto pada sisi kiri dan kanan untuk membuat tombol di tengah */
+    width: auto;
+    font-weight: bold;
+    cursor: pointer;
+}
+.stop-button {
+    color: #F9F6EE;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    background-color: red;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 5px; /* Mengatur margin auto pada sisi kiri dan kanan untuk membuat tombol di tengah */
+    width: auto;
+    font-weight: bold;
+    cursor: pointer;
+}
+.download-button {
+    color: #F9F6EE;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    background-color: green;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px auto; /* Mengatur margin auto pada sisi kiri dan kanan untuk membuat tombol di tengah */
+    width: fit-content;
+    cursor: pointer;
+}

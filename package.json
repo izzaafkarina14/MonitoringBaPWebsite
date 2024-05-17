@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "angularfire2": "^5.4.2",
+    "chart.js": "^4.4.1",
+    "firebase": "^7.24.0",
+    "plotly.js": "^2.27.1"
+  }
+}
